@@ -4,7 +4,7 @@ module.exports = function(sequelize, DataTypes) {
       text: DataTypes.STRING,
       description: DataTypes.TEXT
     });
-    // LOOK INTO THIS WITH JUSTIN
+  // LOOK INTO THIS WITH JUSTIN
   User.associate = function(models) {
     User.hasMany(models.Tools, {
       onDelete: "cascade"
