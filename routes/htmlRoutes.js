@@ -12,7 +12,7 @@ module.exports = function(app) {
   });
 
   // Load example page and pass in an example by id
-  app.get("/api/checkedOut/:id", function(req, res) {
+  app.get("/api/tools/:id", function(req, res) {
     db.Tools.findOne({ where: { id: req.params.id } }).then(function(dbTools) {
       res.render("Tools", {
         tools: dbTools

@@ -11,8 +11,6 @@ module.exports = function(app) {
   // Create a new example
   app.post("/api/tools", function(req, res) {
     db.Tools.create(req.body).then(function(dbTools) {
-      console.log("break");
-      console.log(res);
       res.json(dbTools);
     });
   });

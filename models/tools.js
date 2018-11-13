@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
   var Tools = sequelize.define("Tools", {
-    name: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
@@ -11,9 +11,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.TEXT,
       allowNull: false,
       len: [1]
-    },
-    checkedOut: {
-      type: DataTypes.BOOLEAN
     }
   });
 
