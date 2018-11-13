@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
   var Tools = sequelize.define("Tools", {
-    title: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
@@ -11,6 +11,9 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.TEXT,
       allowNull: false,
       len: [1]
+    },
+    checkedOut: {
+      type: DataTypes.BOOLEAN
     }
   });
 
@@ -21,6 +24,6 @@ module.exports = function(sequelize, DataTypes) {
       }
     });
   };
-  
+
   return Tools;
 };
