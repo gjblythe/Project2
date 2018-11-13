@@ -1,13 +1,14 @@
 module.exports = function(sequelize, DataTypes) {
-    var User = sequelize.define("User", {
+  var User = sequelize.define("User",
+    {
       text: DataTypes.STRING,
-  
       description: DataTypes.TEXT
     });
-    User.associate = function(models) {
-      User.hasMany(models.Post, {
-        onDelete: "cascade"
-      });
-    };
-    return User;
+    // LOOK INTO THIS WITH JUSTIN
+  User.associate = function(models) {
+    User.hasMany(models.Tools, {
+      onDelete: "cascade"
+    });
   };
+  return User;
+};

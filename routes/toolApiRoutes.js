@@ -9,14 +9,16 @@ module.exports = function(app) {
   });
 
   // Create a new example
-  app.post("/api/checkedOut", function(req, res) {
+  app.post("/api/tools", function(req, res) {
     db.Tools.create(req.body).then(function(dbTools) {
+      console.log("break");
+      console.log(res);
       res.json(dbTools);
     });
   });
 
   // Delete an example by id
-  app.delete("/api/checkedOut/:id", function(req, res) {
+  app.delete("/api/tools/:id", function(req, res) {
     db.Tools.destroy({ where: { id: req.params.id } }).then(function(dbTools) {
       res.json(dbTools);
     });
