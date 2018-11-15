@@ -1,14 +1,24 @@
 module.exports = function(sequelize, DataTypes) {
   var Tools = sequelize.define("Tools", {
-    title: {
+    userName: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [1]
       }
     },
-    body: {
+    tool: {
       type: DataTypes.TEXT,
+      allowNull: false,
+      len: [1]
+    },
+    price: {
+      type: DataTypes.DECIMAL,
+      allowNull: false,
+      len: [1]
+    },
+    qty: {
+      type: DataTypes.INTEGER,
       allowNull: false,
       len: [1]
     }
