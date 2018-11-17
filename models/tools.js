@@ -2,7 +2,6 @@ module.exports = function(sequelize, DataTypes) {
   var Tools = sequelize.define("Tools", {
     userName: {
       type: DataTypes.STRING,
-      allowNull: false,
       validate: {
         len: [1]
       }
@@ -13,13 +12,12 @@ module.exports = function(sequelize, DataTypes) {
       len: [1]
     },
     price: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.DECIMAL(10,2),
       allowNull: false,
       len: [1]
     },
     qty: {
       type: DataTypes.INTEGER,
-      allowNull: false,
       len: [1]
     }
   });

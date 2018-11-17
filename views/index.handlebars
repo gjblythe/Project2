@@ -15,11 +15,15 @@
           </div>
           <button id="submit" class="btn btn-primary float-right">Submit</button>
         </form>
-        <h3>Examples:</h3>
+        <h3>Tools:</h3>
         <ul id="example-list" class="list-group">
-          {{#each examples}}
+          {{#each tools}}
           <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
+            <a href="example/{{this.id}}">{{this.userName}}</a>
+            <hr>
+            <p>Tool: {{this.tool}}</p>
+            <p>Price: {{this.price}}</p>
+            <p>Quantity: {{this.qty}}</p>
             <button class="btn btn-danger float-right delete">ｘ</button>
           </li>
           {{/each}}
