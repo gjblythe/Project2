@@ -1,19 +1,29 @@
 var db = require("../models");
 
-module.exports = function(app) {
+module.exports = function (app) {
   // Load index page
-  app.get("/", function(req, res) {
-    db.Tools.findAll({}).then(function(dbTools) {
+  app.get("/", function (req, res) {
+    db.Tools.findAll({}).then(function (dbTools) {
       res.render("index", {
         msg: "Welcome!",
         tools: dbTools
+      });
+      console.log(`userName ${dbTools.userName} \n tool ${dbTools.tool} qty ${dbTools.qty}`);
+    });
+  });
+
+  app.get("/example", function (req, res) {
+    db.User.findAll({}).then(function (dbUser) {
+      res.render("example", {
+        msg: "Welcome to the examples!",
+        user: dbUser.userName
       });
     });
   });
 
   // Load example page and pass in an example by id
-  app.get("/api/tools/:id", function(req, res) {
-    db.Tools.findOne({ where: { id: req.params.id } }).then(function(dbTools) {
+  app.get("/api/tools/:id", function (req, res) {
+    db.Tools.findOne({ where: { id: req.params.id } }).then(function (dbTools) {
       res.render("Tools", {
         tools: dbTools
       });
@@ -21,7 +31,7 @@ module.exports = function(app) {
   });
 
   // Render 404 page for any unmatched routes
-  app.get("*", function(req, res) {
+  app.get("*", function (req, res) {
     res.render("404");
   });
 };
