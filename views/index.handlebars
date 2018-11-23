@@ -1,37 +1,120 @@
-<div id="home">
-  <div class="container">
-    <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
-          </div>
-          <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form>
-        <h3>Tools:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each tools}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.userName}}</a>
-            <hr>
-            <p>Tool: {{this.tool}}</p>
-            <p>Price: {{this.price}}</p>
-            <p>Quantity: {{this.qty}}</p>
-            <button class="btn btn-danger float-right delete">ｘ</button>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>TOOLTRACKER | Locate Your Tools</title>
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+  Plugin CSS
+  <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css"> -->
+  <!-- Custom styles for this template -->
+  <link href="/../../stylesheets/style.css" rel="stylesheet">
+</head>
+
+<body id="page-top">
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">TOOL TRACKER</a>
+      <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button"
+        data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#"></a>
           </li>
-          {{/each}}
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#">Login</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#">Register</a>
+          </li>
         </ul>
       </div>
     </div>
-  </div>
-</div>
+  </nav>
+  <!-- Header -->
+  <header class="masthead bg-primary text-white text-center">
+    <div class="container">
+      <img class="img-fluid mb-5 d-block mx-auto" src="img/tooltracker.png" alt="">
+      <h1 class="text-uppercase mb-0">Get Started</h1>
+      <hr class="star-light">
+      <h2 class="font-weight-light mb-0">Providing the tools you need, to succeed</h2>
+    </div>
+  </header>
+  <!-- LOGIN SECTION -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="text-center text-uppercase text-secondary mb-0">Enter Your Information</h2>
+      <hr class="star-dark mb-5">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+
+          <div class="form-group row">
+            <label for="userName" class="col-2 col-form-label">User Name</label>
+            <div class="col-10">
+              <input class="form-control" type="text" value="userName" id="userName">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="price" class="col-2 col-form-label">Price</label>
+            <div class="col-10">
+              <input class="form-control" type="search" value="Enter Price" id="price">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="tool">Select Tool:</label>
+            <select class="form-control" id="tool">
+              <option>Wrench</option>
+              <option>Drill</option>
+              <option>Hammer</option>
+              <option>Saw</option>
+            </select>
+          </div>
+          <div class="form-group row">
+            <label for="example-url-input" class="col-2 col-form-label">Quantity</label>
+            <div class="col-10">
+              <input class="form-control" type="url" value="qty" id="qty">
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <br>
+      <div id="success"></div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-xl" id="sendMessageButton">Send</button>
+      </div>
+      </form>
+    </div>
+    </div>
+    </div>
+  </section>
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!--Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+  <!-- Contact Form JavaScript -->
+  <script src="js/jqBootstrapValidation.js"></script>
+  <script src="js/contact_me.js"></script>
+  <!--Custom scripts for this template -->
+
+</body>
+
+</html>
