@@ -22,13 +22,13 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  Tools.associate = function(models) {
-    Tools.belongsTo(models.User, {
-      foreignKey: {
-        allowNull: false
-      }
-    });
-  };
+  // Tools.associate = function(models) {
+  //   Tools.belongsTo(models.User, {
+  //     foreignKey: {
+  //       allowNull: false
+  //     }
+  //   });
+  // };
 
   return Tools;
 };

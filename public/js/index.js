@@ -1,12 +1,25 @@
 // Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
-var $submitBtn = $("#submit");
+var userNameInput = $("#userName");
+var toolInput = $("#tool");
+var priceInput = $("#price");
+var qtyInput = $("#qty");
+var UserId = $("userId");
+var $submitBtn = $("#sendMessageButton");
 var $exampleList = $("#example-list");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveExample: function (example) {
+  saveUser: function (example) {
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "api/user",
+      data: JSON.stringify(example)
+    });
+  },
+  saveTools: function (example) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
@@ -19,6 +32,12 @@ var API = {
   getExamples: function () {
     return $.ajax({
       url: "api/tools",
+      type: "GET"
+    });
+  },
+  getUsers: function () {
+    return $.ajax({
+      url: "api/user",
       type: "GET"
     });
   },
@@ -64,22 +83,43 @@ var refreshExamples = function () {
 var handleFormSubmit = function (event) {
   event.preventDefault();
 
-  var example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
+  var newUser = {
+    userName: userNameInput
+      .val()
+      .trim(),
   };
 
-  if (!(example.text && example.description)) {
-    alert("You must enter an example text and description!");
+  var newTool = {
+    userName: userNameInput
+      .val()
+      .trim(),
+    tool: toolInput
+      .val()
+      .trim(),
+    price: priceInput
+      .val()
+      .trim(),
+    qty: qtyInput
+      .val()
+      .trim()
+  };
+
+  if (!(userNameInput || toolInput || priceInput || qtyInput)) {
+    alert("Please complete the form.");
     return;
   }
 
-  API.saveExample(example).then(function () {
-    refreshExamples();
+  API.saveUser(newUser).then(function () {
+    API.saveTools(newTool).then(function(){
+
+      refreshExamples();
+    });
   });
 
-  $exampleText.val("");
-  $exampleDescription.val("");
+  userNameInput.val("");
+  toolInput.val("");
+  priceInput.val("");
+  qtyInput.val("");
 };
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
