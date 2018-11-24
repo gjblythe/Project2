@@ -67,13 +67,13 @@
           <div class="form-group row">
             <label for="userName" class="col-2 col-form-label">User Name</label>
             <div class="col-10">
-              <input class="form-control" type="text" value="userName" id="userName">
+              <input class="form-control" type="text" id="userName">
             </div>
           </div>
           <div class="form-group row">
             <label for="price" class="col-2 col-form-label">Price</label>
             <div class="col-10">
-              <input class="form-control" type="search" value="Enter Price" id="price">
+              <input class="form-control" type="search" id="price">
             </div>
           </div>
           <div class="form-group row">
@@ -88,7 +88,7 @@
           <div class="form-group row">
             <label for="example-url-input" class="col-2 col-form-label">Quantity</label>
             <div class="col-10">
-              <input class="form-control" type="url" value="qty" id="qty">
+              <input class="form-control" type="url" id="qty">
             </div>
 
           </div>
@@ -100,6 +100,18 @@
         <button type="submit" class="btn btn-primary btn-xl" id="sendMessageButton">Send</button>
       </div>
       </form>
+        <ul id="example-list" class="list-group">
+          {{#each tools}}
+          <li data-id="{{this.id}}" class="list-group-item">
+            <a href="example/{{this.id}}">{{this.userName}}</a>
+            <hr>
+            <p>Tool: {{this.tool}}</p>
+            <p>Price: {{this.price}}</p>
+            <p>Quantity: {{this.qty}}</p>
+            <button class="btn btn-danger float-right delete">ｘ</button>
+          </li>
+          {{/each}}
+        </ul>
     </div>
     </div>
     </div>
@@ -114,6 +126,9 @@
   <script src="js/jqBootstrapValidation.js"></script>
   <script src="js/contact_me.js"></script>
   <!--Custom scripts for this template -->
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="/js/index.js"></script>
 
 </body>
 

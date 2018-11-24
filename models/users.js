@@ -5,10 +5,10 @@ module.exports = function(sequelize, DataTypes) {
     createdAt: DataTypes.DATE
   });
   // LOOK INTO THIS WITH JUSTIN
-  User.associate = function(models) {
-    User.hasMany(models.Tools, {
-      onDelete: "cascade"
-    });
-  };
+  // User.associate = function(models) {
+  //   User.hasMany(models.Tools, {
+  //     onDelete: "cascade"
+  //   });
+  // };
   return User;
 };
