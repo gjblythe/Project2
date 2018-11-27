@@ -25,26 +25,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
     <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">TOOL TRACKER</a>
-      <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button"
-        data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-        aria-label="Toggle navigation">
-        <i class="fas fa-bars"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#"></a>
-          </li>
-          <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#">Login</a>
-          </li>
-          <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#">Register</a>
-          </li>
-        </ul>
-      </div>
-    </div>
+      <a class="navbar-brand " href="#page-top">TOOL TRACKER</a>
   </nav>
   <!-- Header -->
   <header class="masthead bg-primary text-white text-center">
@@ -67,13 +48,13 @@
           <div class="form-group row">
             <label for="userName" class="col-2 col-form-label">User Name</label>
             <div class="col-10">
-              <input class="form-control" type="text" value="userName" id="userName">
+              <input class="form-control" type="text" value="" id="userName">
             </div>
           </div>
           <div class="form-group row">
             <label for="price" class="col-2 col-form-label">Price</label>
             <div class="col-10">
-              <input class="form-control" type="search" value="Enter Price" id="price">
+              <input class="form-control" type="search" value="" id="price">
             </div>
           </div>
           <div class="form-group row">
@@ -83,12 +64,14 @@
               <option>Drill</option>
               <option>Hammer</option>
               <option>Saw</option>
+              <option>Screwdriver</option>
+              <option>Shovel</option>
             </select>
           </div>
           <div class="form-group row">
             <label for="example-url-input" class="col-2 col-form-label">Quantity</label>
             <div class="col-10">
-              <input class="form-control" type="url" value="qty" id="qty">
+              <input class="form-control" type="url" value="" id="qty">
             </div>
 
           </div>
@@ -97,7 +80,7 @@
       <br>
       <div id="success"></div>
       <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-xl" id="sendMessageButton">Send</button>
+        <button type="submit" class="btn btn-primary btn-xl" id="sendMessageButton">Submit</button>
       </div>
       </form>
     </div>
@@ -113,7 +96,7 @@
   <!-- Contact Form JavaScript -->
   <script src="js/jqBootstrapValidation.js"></script>
   <script src="js/contact_me.js"></script>
-  <!--Custom scripts for this template -->
+  
 
 </body>
 
