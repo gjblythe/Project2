@@ -9,7 +9,7 @@ var $exampleList = $("#example-list");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveUser: function (example) {
+  saveUser: function(example) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
@@ -19,7 +19,7 @@ var API = {
       data: JSON.stringify(example)
     });
   },
-  saveTools: function (example) {
+  saveTools: function(example) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
@@ -29,19 +29,19 @@ var API = {
       data: JSON.stringify(example)
     });
   },
-  getExamples: function () {
+  getExamples: function() {
     return $.ajax({
       url: "api/tools",
       type: "GET"
     });
   },
-  getUsers: function () {
+  getUsers: function() {
     return $.ajax({
       url: "api/user",
       type: "GET"
     });
   },
-  deleteExample: function (id) {
+  deleteExample: function(id) {
     return $.ajax({
       url: "api/tools/" + id,
       type: "DELETE"
@@ -50,21 +50,22 @@ var API = {
 };
 
 // refreshExamples gets new examples from the db and repopulates the list
-var refreshExamples = function () {
-  API.getExamples().then(function (data) {
-    var $examples = data.map(function (example) {
+var refreshExamples = function() {
+  API.getExamples().then(function(data) {
+    var $examples = data.map(function(example) {
       var $a = $("<a>")
         .text(example.text)
-        .attr("href", "/tools/" + example.id);
-
-      var $li = $("<li>")
+        .attr("href", "/api/" + example.id);
+        
+        var $li = $("<li>")
         .attr({
           class: "list-group-item",
-          "data-id": Tools.id
+          "data-id": tools.id
         })
         .append($a);
-
-      var $button = $("<button>")
+      
+        
+        var $button = $("<button>")
         .addClass("btn btn-danger float-right delete")
         .text("ｘ");
 
@@ -84,52 +85,51 @@ var handleFormSubmit = function (event) {
   event.preventDefault();
 
   var newUser = {
-    userName: userNameInput
-      .val()
-      .trim(),
+    userName: userNameInput.val().trim()
   };
 
   var newTool = {
-    userName: userNameInput
-      .val()
-      .trim(),
-    tool: toolInput
-      .val()
-      .trim(),
-    price: priceInput
-      .val()
-      .trim(),
-    qty: qtyInput
-      .val()
-      .trim()
+    userName: userNameInput.val().trim(),
+    tool: toolInput.val().trim(),
+    price: priceInput.val().trim(),
+    qty: qtyInput.val().trim()
   };
 
-  if (!(userNameInput || toolInput || priceInput || qtyInput)) {
-    alert("Please complete the form.");
+  if (userNameInput.val() === "") {
+    alert("Please Enter a proper Username.");
+    return;
+  } else if (priceInput.val() === "") {
+    alert("Please enter a Price.");
+    return;
+  } else if (qtyInput.val() === "") {
+    alert("Please enter a Quantity.");
     return;
   }
 
-  API.saveUser(newUser).then(function () {
-    API.saveTools(newTool).then(function(){
-
-      refreshExamples();
-    });
+  API.saveUser(newUser).then(function() {
+    console.log("Save user is being called");
+    location.reload();
+    refreshExamples();
+    return API.saveTools(newTool);
+  }).then(function() {
+    console.log("Save tools is being called");
+    console.log("After refresh.");
+    userNameInput.val("");
+    toolInput.val("");
+    priceInput.val("");
+    qtyInput.val("");
   });
-
-  userNameInput.val("");
-  toolInput.val("");
-  priceInput.val("");
-  qtyInput.val("");
 };
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
 // Remove the example from the db and refresh the list
-var handleDeleteBtnClick = function () {
+var handleDeleteBtnClick = function() {
   var idToDelete = $(this)
     .parent()
     .attr("data-id");
 
-  API.deleteExample(idToDelete).then(function () {
+    API.deleteExample(idToDelete).then(function() {
+      location.reload();
     refreshExamples();
   });
 };
@@ -137,46 +137,3 @@ var handleDeleteBtnClick = function () {
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
-
-
-/* These are the objects that will store the input to be sent to the API
-
-Tool object
-
-var userNameInput = $('#userName');
-var toolInput = $('#tool');
-var priceInput = $('#price');
-var qtyInput = $('#qty');
-
-
-var newTool = {
-    userName: userNameInput
-      .val()
-      .trim(),
-    tool: toolInput
-      .val()
-      .trim(),
-    price: priceInput
-      .val()
-      .trim(),
-    qty: qtyInput
-      .val()
-      .trim(),
-    userId: userSelect.val()
-  };
-  
-User Object
-
-  var newUserInput = $('#newUserName');
-  var toolsCheckedOutInput = $('toolCheckedOut');
-
-
-  var newUser = {
-    userName: newUserInput
-      .val()
-      .trim(),
-    tools: toolsCheckedOutInput
-      .val()
-      .trim()
-  }; 
-  */
