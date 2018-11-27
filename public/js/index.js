@@ -3,7 +3,7 @@ var userNameInput = $("#userName");
 var toolInput = $("#tool");
 var priceInput = $("#price");
 var qtyInput = $("#qty");
-var UserId = $("userId");
+// var userId = $("userId");
 var $submitBtn = $("#sendMessageButton");
 var $exampleList = $("#example-list");
 
@@ -56,16 +56,13 @@ var refreshExamples = function() {
       var $a = $("<a>")
         .text(example.text)
         .attr("href", "/api/" + example.id);
-        
-        var $li = $("<li>")
+      var $li = $("<li>")
         .attr({
           class: "list-group-item",
           "data-id": tools.id
         })
         .append($a);
-      
-        
-        var $button = $("<button>")
+      var $button = $("<button>")
         .addClass("btn btn-danger float-right delete")
         .text("ｘ");
 
@@ -81,7 +78,7 @@ var refreshExamples = function() {
 
 // handleFormSubmit is called whenever we submit a new example
 // Save the new example to the db and refresh the list
-var handleFormSubmit = function (event) {
+var handleFormSubmit = function(event) {
   event.preventDefault();
 
   var newUser = {
@@ -106,19 +103,21 @@ var handleFormSubmit = function (event) {
     return;
   }
 
-  API.saveUser(newUser).then(function() {
-    console.log("Save user is being called");
-    location.reload();
-    refreshExamples();
-    return API.saveTools(newTool);
-  }).then(function() {
-    console.log("Save tools is being called");
-    console.log("After refresh.");
-    userNameInput.val("");
-    toolInput.val("");
-    priceInput.val("");
-    qtyInput.val("");
-  });
+  API.saveUser(newUser)
+    .then(function() {
+      console.log("Save user is being called");
+      location.reload();
+      refreshExamples();
+      return API.saveTools(newTool);
+    })
+    .then(function() {
+      console.log("Save tools is being called");
+      console.log("After refresh.");
+      userNameInput.val("");
+      toolInput.val("");
+      priceInput.val("");
+      qtyInput.val("");
+    });
 };
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
@@ -128,8 +127,8 @@ var handleDeleteBtnClick = function() {
     .parent()
     .attr("data-id");
 
-    API.deleteExample(idToDelete).then(function() {
-      location.reload();
+  API.deleteExample(idToDelete).then(function() {
+    location.reload();
     refreshExamples();
   });
 };
