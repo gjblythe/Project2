@@ -128,7 +128,7 @@ var handleDeleteBtnClick = function() {
     .attr("data-id");
 
   API.deleteExample(idToDelete).then(function() {
-    location.reload();
+    // location.reload();
     refreshExamples();
   });
 };
