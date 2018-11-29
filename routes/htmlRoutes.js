@@ -12,11 +12,11 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/example", function (req, res) {
-    db.User.findAll({}).then(function (dbUser) {
-      res.render("example", {
-        msg: "Welcome to the examples!",
-        user: dbUser.userName
+  app.get("/tools", function (req, res) {
+    db.Tools.findAll({}).then(function (dbTools) {
+      res.render("tools", {
+        msg: "Checked out supplies!",
+        tools: dbTools
       });
     });
   });
